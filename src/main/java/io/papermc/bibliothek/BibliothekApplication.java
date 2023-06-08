@@ -24,13 +24,15 @@
 package io.papermc.bibliothek;
 
 import io.papermc.bibliothek.configuration.AppConfiguration;
+import io.papermc.bibliothek.configuration.StorageConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @EnableConfigurationProperties({
-  AppConfiguration.class
+  AppConfiguration.class,
+  StorageConfiguration.class
 })
 @SpringBootApplication
 @ServletComponentScan

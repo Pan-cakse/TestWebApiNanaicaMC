@@ -23,14 +23,27 @@
  */
 package io.papermc.bibliothek.configuration;
 
-import java.net.URL;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import java.nio.file.Path;
+import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
-@ConfigurationProperties(prefix = "app")
+@ConfigurationProperties(prefix = "app.storage")
 @Validated
-public record AppConfiguration(
-  URL apiBaseUrl,
-  String apiTitle
+public record StorageConfiguration(
+  @NotNull Path cache,
+  @NotEmpty List<Source> sources
 ) {
+  public record Source(
+    String name,
+    Type type,
+    String value
+  ) {
+    public enum Type {
+      LOCAL,
+      REMOTE;
+    }
+  }
 }
